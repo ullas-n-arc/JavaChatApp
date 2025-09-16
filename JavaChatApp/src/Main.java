@@ -9,7 +9,7 @@ public class Main {
             ChatServer.main(serverArgs);
         } else {
             // Start the client with default address and port
-            ChatClient client = new ChatClient("localhost", 12345);
+            ChatClient client = new ChatClient("localhost", 8080);
             client.start();
         }
     }

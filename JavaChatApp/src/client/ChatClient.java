@@ -18,6 +18,24 @@ public class ChatClient {
     public void start() throws IOException {
         connectToServer();
         listenForMessages();
+        
+        // Read user input and send messages
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        String message;
+        System.out.println("Start typing messages (type '/quit' to exit):");
+        
+        try {
+            while ((message = userInput.readLine()) != null) {
+                if ("/quit".equalsIgnoreCase(message)) {
+                    break;
+                }
+                sendMessage(message);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user input: " + e.getMessage());
+        } finally {
+            close();
+        }
     }
 
     private void connectToServer() throws IOException {
